@@ -41,6 +41,7 @@ export default {
     bold: "$t:wysiwyg_options.bold",
     italic: "$t:wysiwyg_options.italic",
     strike: "$t:wysiwyg_options.strikethrough",
+    highlightedText: "Highlight", // Added translation for the tool key
     code: "Code",
     subscript: "$t:wysiwyg_options.subscript",
     superscript: "$t:wysiwyg_options.superscript",
@@ -114,6 +115,13 @@ export default {
   remove: "$t:remove",
   save: "$t:save",
   related_item_missing: "The related item does not exist!",
+  highlighted_text: {
+    toolbar_button_title: "Highlight Text",
+    green: "Green",
+    orange: "Orange",
+    red: "Red",
+    remove_highlight: "Remove Highlight",
+  },
   duplication_warning:
     "Not all nested data could be duplicated, probably because an already saved item was edited before it was duplicated. This can be solved by saving the edited item with the rest of the content before duplicating it.",
   errors: {
