@@ -64,7 +64,7 @@ const props = defineProps<
 const { t } = useI18nFallback(useI18n());
 
 const buttonTitle = computed(
-  () => props.title || t("highlighted_text.toolbar_button_title")
+  () => props.title || t("highlighted_text.toolbar_button_title"),
 );
 
 const highlightStyles = [
@@ -77,6 +77,7 @@ const highlightStyles = [
     value: "orange",
   },
   { name: t("highlighted_text.red"), value: "red" },
+  { name: t("highlighted_text.gradient-1"), value: "gradient-1" },
 ];
 
 const applyHighlight = (styleValue: string) => {

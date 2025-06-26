@@ -109,7 +109,7 @@ const editor = useEditor({
   content: props.value,
   extensions: [
     Document.extend(
-      singleLineMode.value ? { content: "(text|singleline)*" } : {}
+      singleLineMode.value ? { content: "(text|singleline)*" } : {},
     ),
     Text,
     Paragraph,
@@ -145,7 +145,7 @@ watch(
     if (isSame) return;
     editor.value!.commands.setContent(value, false);
     resetRelationNodes();
-  }
+  },
 );
 // The following lines are causing the update event to fire on editor creation, which leads to issues. Found out that directus disables the field globally, so this is not needed!
 // watch(() => props.disabled, (disabled) =>
@@ -468,15 +468,40 @@ if (props.m2aField) {
 }
 
 .flexible-editor :deep(.green) {
-  background-color: lightgreen;
+  border-radius: 0.25rem;
+  background-color: #d1fae5;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #065f46;
 }
 
 .flexible-editor :deep(.orange) {
-  background-color: orange;
+  border-radius: 0.25rem;
+  background-color: #ffedd4;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #9c4221;
 }
 
 .flexible-editor :deep(.red) {
-  background-color: lightcoral;
+  border-radius: 0.25rem;
+  background-color: #fee2e2;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #991b1b;
+}
+
+.flexible-editor :deep(.gradient-1) {
+  background-image: linear-gradient(to right, #10b981, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .flexible-editor :deep(pre) {

@@ -6,7 +6,7 @@ export interface HighlightedTextOptions {
 
 // These styles should ideally be configurable or imported from a shared source
 // if they are used in multiple places (e.g., here and in ToolButton.vue)
-const KNOWN_HIGHLIGHT_STYLES = ["green", "orange", "red"];
+const KNOWN_HIGHLIGHT_STYLES = ["green", "orange", "red", "gradient-1"];
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
