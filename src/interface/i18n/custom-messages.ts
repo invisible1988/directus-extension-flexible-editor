@@ -120,6 +120,7 @@ export default {
     green: "Green",
     orange: "Orange",
     red: "Red",
+    "gradient-1": "Gradient 1",
     remove_highlight: "Remove Highlight",
   },
   duplication_warning:
