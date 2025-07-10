@@ -23,6 +23,7 @@ import blockquote from "./blockquote";
 import table from "./table";
 import fullscreen from "./fullscreen";
 import { highlightedTextTool } from "./highlighted-text";
+import youtube from "./youtube"; // Add YouTube import
 import type { AnyExtension } from "@tiptap/core";
 import type { Tool, ToolSelection, InterfaceOption } from "../types";
 
@@ -50,6 +51,7 @@ const tools: Tool[] = [
   relationMark,
   hardBreak,
   horizontalRule,
+  youtube, // Add YouTube tool
   textAlign,
   bulletList,
   orderedList,

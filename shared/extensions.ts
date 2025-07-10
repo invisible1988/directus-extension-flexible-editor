@@ -25,6 +25,7 @@ import { TableRow } from "@tiptap/extension-table-row";
 import { TableCell } from "@tiptap/extension-table-cell";
 import TextAlign from "@tiptap/extension-text-align";
 import { HighlightedText } from "../src/interface/tools/highlighted-text/HighlightedText"; // Import HighlightedText
+import YouTubeExtension from "../src/interface/tools/youtube/YouTubeExtension.js"; // Import YouTube extension
 
 export default [
   Document,
@@ -51,4 +52,5 @@ export default [
   TableCell,
   TextAlign,
   HighlightedText, // Add HighlightedText to the array
+  YouTubeExtension, // Add YouTubeExtension to the array
 ];
