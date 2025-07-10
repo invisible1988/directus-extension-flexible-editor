@@ -15,14 +15,14 @@ declare module "@tiptap/core" {
        */
       setYouTubeVideo: (options: {
         videoId: string;
-        type?: "video" | "short";
+        videoType?: "video" | "short";
       }) => ReturnType;
     };
   }
 }
 
 export default Node.create<YouTubeOptions>({
-  name: "youtube",
+  name: "youtube_embed",
 
   addOptions() {
     return {
@@ -42,7 +42,7 @@ export default Node.create<YouTubeOptions>({
       videoId: {
         default: null,
       },
-      type: {
+      videoType: {
         default: "video",
       },
     };
@@ -57,51 +57,65 @@ export default Node.create<YouTubeOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const { videoId, type } = HTMLAttributes;
+    const { videoId, videoType } = HTMLAttributes;
 
     if (!videoId) {
       return ["div", { "data-youtube-video": "" }, "YouTube video ID missing"];
     }
 
-    const baseUrl = this.options.nocookie
-      ? "https://www.youtube-nocookie.com/embed/"
-      : "https://www.youtube.com/embed/";
-
-    const url =
-      type === "short" ? `${baseUrl}${videoId}?si=0` : `${baseUrl}${videoId}`;
-
-    const queryParams = new URLSearchParams();
-
-    if (this.options.controls) {
-      queryParams.set("controls", "1");
-    }
-
-    if (this.options.origin) {
-      queryParams.set("origin", this.options.origin);
-    }
-
-    const finalUrl = `${url}&${queryParams.toString()}`;
-
     return [
       "div",
       mergeAttributes(HTMLAttributes, {
         "data-youtube-video": videoId,
-        "data-youtube-type": type,
+        "data-youtube-type": videoType,
         contenteditable: "false",
         style:
-          "position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;",
+          "display: inline-block; position: relative; width: 200px; height: 112px; margin: 8px 16px 8px 0; cursor: pointer; border-radius: 6px; overflow: hidden; background: linear-gradient(135deg, #282828 0%, #181818 100%); vertical-align: top;",
       }),
       [
-        "iframe",
+        // Video info overlay (top-left)
+        "div",
         {
-          src: finalUrl,
-          allowfullscreen: this.options.allowFullscreen ? "true" : "false",
-          allow:
-            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
           style:
-            "position: absolute; top: 0; left: 0; width: 100%; height: 100%;",
-          frameborder: "0",
+            "position: absolute; top: 8px; left: 8px; color: white; z-index: 2; font-size: 10px;",
         },
+        [
+          "div",
+          {
+            style: "font-weight: 600; margin-bottom: 2px;",
+          },
+          videoType === "short" ? "Short" : "Video",
+        ],
+        [
+          "div",
+          {
+            style: "opacity: 0.7; font-family: monospace; font-size: 9px;",
+          },
+          videoId.substring(0, 8) + "...",
+        ],
+      ],
+      [
+        // Play button container (centered)
+        "div",
+        {
+          style:
+            "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3;",
+        },
+        [
+          // Simpler, more visible YouTube play button
+          "div",
+          {
+            style:
+              "width: 40px; height: 40px; background: #FF0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 6px rgba(0,0,0,0.4);",
+          },
+          [
+            "div",
+            {
+              style:
+                "width: 0; height: 0; border-left: 12px solid white; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px;",
+            },
+          ],
+        ],
       ],
     ];
   },

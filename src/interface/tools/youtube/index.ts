@@ -15,5 +15,5 @@ export default defineTool({
   disabled: (editor: Editor) =>
     !editor.can().chain().focus().insertContent("").run(),
   disabledInSingleLineMode: true,
-  active: (editor: Editor) => editor.isActive("youtube"),
+  active: (editor: Editor) => editor.isActive("youtube_embed"),
 });
