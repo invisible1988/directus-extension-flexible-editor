@@ -48,6 +48,7 @@ export default {
     link: "$t:field_options.directus_roles.fields.link_name",
     unlink: "$t:wysiwyg_options.unlink",
     autolink: "Autolink",
+    youtube: "YouTube Embed", // Add YouTube tool translation
     hard_break: "Hard Break",
     hr: "$t:wysiwyg_options.hr",
     bullet_list: "$t:wysiwyg_options.bullist",
